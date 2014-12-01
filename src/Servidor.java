@@ -79,7 +79,7 @@ public class Servidor {
                 HiloCliente hiloCliente = null;
 		//HiloCliente hiloCliente = null;
 		
-		serverSocket = new ServerSocket(8440);
+		serverSocket = new ServerSocket(8400);
 		while(true){
 			System.out.println("Esperando peticiones...");
 			socket = serverSocket.accept();
