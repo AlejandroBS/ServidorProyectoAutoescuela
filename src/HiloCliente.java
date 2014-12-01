@@ -58,18 +58,15 @@ public class HiloCliente implements Runnable {
                 byte[] buffer = new byte[tamano];
                 int leido = 0;
                 
-                
                 comprimirFichero(fichero);
 
                 File f = new File("data" + File.separator + fichero+".zip");
                 FileInputStream fis = new FileInputStream(f);
-                if (f.isDirectory() && f.exists()) {
-                    Compressor comp = new Compressor("data", fichero + ".zip");
-                    comp.compress("data" + File.separator + fichero, fichero);
-                    comp.close();
-                    salida.writeInt(tamano);
-                    salida.flush();
-
+                if (f.exists()) {
+                   
+                    salida.writeInt(1024);
+                    //salida.flush();
+                    
                     while ((leido = fis.read(buffer)) > 0) {
 
                         salida.writeInt(leido);

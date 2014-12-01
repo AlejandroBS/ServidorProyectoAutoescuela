@@ -38,48 +38,7 @@ public class Decompressor {
         byte[] buffer = new byte[1024];
 
         try {
-            /*
-             //create output directory is not exists
-             File folder = new File(OUTPUT_FOLDER);
-             if (!folder.exists()) {
-             folder.mkdir();
-             }
-
-             //get the zip file content
-             ZipInputStream zis = new ZipInputStream(new FileInputStream(INPUT_ZIP_FILE));
-             //get the zipped file list entry
-             ZipEntry ze = zis.getNextEntry();
-
-             while (ze != null) {
-             try {
-             String fileName = ze.getName();
-             File newFile = new File(OUTPUT_FOLDER + File.separator + fileName);
-
-                    
-
-             //System.out.println("file unzip : "+ newFile.getAbsoluteFile());
-             //create all non exists folders
-             //else you will hit FileNotFoundException for compressed folder
-             System.out.println(OUTPUT_FOLDER + File.separator + fileName);
-
-             FileOutputStream fos = new FileOutputStream(newFile);
-
-             int len = 0;
-             while ((len = zis.read(buffer)) > 0) {
-             fos.write(buffer, 0, len);
-             }
-
-             fos.close();
-
-             ze = zis.getNextEntry();
-             System.out.println("close");
-
-             } catch (IOException ex) {
-                    
-             }
-             }
-             zis.close();*/
-
+            
             FileInputStream fis = new FileInputStream(INPUT_ZIP_FILE);
             ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
             ZipEntry entry;
