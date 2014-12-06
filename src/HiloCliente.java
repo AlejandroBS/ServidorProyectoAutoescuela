@@ -54,7 +54,7 @@ public class HiloCliente implements Runnable {
             //quiere descargar un fichero
             if (eleccion == 2) {
                 String fichero = entrada.readUTF();
-                int tamano = 1024;
+                int tamano = 5096;
                 byte[] buffer = new byte[tamano];
                 int leido = 0;
                 
@@ -64,11 +64,11 @@ public class HiloCliente implements Runnable {
                 
                 FileInputStream fis = new FileInputStream(f);
                 if (f.exists()) {
-                    salida.writeLong(f.length());
-                    salida.flush();
-                    salida.writeInt(1024);
+                    salida.writeInt(tamano);
                     salida.flush();
                     
+                    salida.writeLong(f.length());
+                    salida.flush();
                     while ((leido = fis.read(buffer)) > 0) {
 
                         salida.writeInt(leido);

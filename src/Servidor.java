@@ -83,7 +83,7 @@ public class Servidor {
 		while(true){
 			System.out.println("Esperando peticiones...");
 			socket = serverSocket.accept();
-                        System.out.println("Se acepto nueva peticion de "+socket.getLocalSocketAddress());
+                        System.out.println("Se acepto nueva peticion de "+socket.getRemoteSocketAddress());
 			salida = new ObjectOutputStream(socket.getOutputStream());
 			entrada = new ObjectInputStream(socket.getInputStream());
 			
