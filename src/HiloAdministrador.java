@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HiloAdministrador implements Runnable {
+public class HiloAdministrador extends Thread {
 
     private ObjectInputStream entrada = null;
     private ObjectOutputStream salida = null;

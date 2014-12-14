@@ -104,14 +104,14 @@ public class Servidor {
 				// si entra aqui es un administrador
 				hiloAdmin = new HiloAdministrador(socket,entrada,salida);
 				//hilosAdmin.add(hiloAdmin);
-				hiloAdmin.run();
+				hiloAdmin.start();
 			}
                         System.out.println(id);
 			if(id>0){
                             System.out.println("la id es >0");
 				// si entra aqui es un usuario
 				hiloCliente = new HiloCliente(socket,entrada,salida);
-                                hiloCliente.run();			
+                                hiloCliente.start();			
 			}
 		}
 	}

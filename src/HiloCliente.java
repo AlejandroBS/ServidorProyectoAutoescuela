@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.test.alejandro.test.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Alejandro
  */
-public class HiloCliente implements Runnable {
+public class HiloCliente extends Thread {
 
     private Socket socket;
     private ObjectInputStream entrada;
@@ -39,8 +40,18 @@ public class HiloCliente implements Runnable {
                 File[] lista = f.listFiles();
 
                 for (int i = 0; i < lista.length; i++) {
-                    if (lista[i].isDirectory()) {
+                    if (lista[i].isDirectory() && new File("data"+File.separator+lista[i].getName()+File.separator+lista[i].getName()+".test").exists()) {
+                        File fich= new File("data"+File.separator+lista[i].getName()+File.separator+lista[i].getName()+".test");
+                        
+                        FileInputStream fis = new FileInputStream(fich);
+                        ObjectInputStream fichero = new ObjectInputStream(fis);
+                        
+                        fichero.readInt();
+                        fichero.readInt();
+                        Test t = (Test) fichero.readObject();
+                        
                         salida.writeBoolean(true);
+                        salida.writeInt(t.getVersion());                        
                         System.out.println(lista[i].getName());
                         salida.flush();
                         salida.writeUTF(lista[i].getName());
@@ -89,6 +100,8 @@ public class HiloCliente implements Runnable {
             }
 
         } catch (IOException ex) {
+            Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(HiloCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
